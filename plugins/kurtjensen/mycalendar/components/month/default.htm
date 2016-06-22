@@ -1,0 +1,61 @@
+{% set MyM = __SELF__ %}
+{% set dayPointer = MyM.dayPointer %}
+{% set devents = MyM.events[MyM.year][MyM.monthNum] %}
+{% set dprops = MyM.dayprops[MyM.year][MyM.monthNum] %}
+{% set trailDays = 0 %}
+<table class="mycal" 
+       data-request-data="month:{{ MyM.monthNum }}">
+    <thead>
+        <tr>
+            <th colspan="2" class="text-right">
+                <a href="{{ this.page.baseFileName | app }}/{{ MyM.linkPrevMonth|date('m') }}/{{ MyM.linkPrevMonth|date('Y') }}">
+                {{ MyM.trans('kurtjensen.mycalendar::lang.month.previous') }}</a>
+            </th>
+            <th colspan="3"  class="monthHead">
+                {{ MyM.monthTitle }} {{ MyM.year }}
+            </th>
+            <th colspan="2" class="text-left">
+                <a href="{{ this.page.baseFileName | app }}/{{ MyM.linkNextMonth|date('m') }}/{{ MyM.linkNextMonth|date('Y') }}">
+                {{ MyM.trans('kurtjensen.mycalendar::lang.month.next') }}</a>
+            </th>
+        </tr>
+        <tr class="daysHead">
+{% for hding in  MyM.calHeadings %}
+            <th>{{ hding }}</th>
+{% endfor %}
+        </tr>
+     </thead>
+     <tbody>
+{% for r in range(1,6) %}
+{% if dayPointer < MyM.days_in_month %}
+        <tr class="days">
+{% for x in range(0, 6) %}
+{% set dayPointer = dayPointer + 1 %}
+{% if dayPointer <1 %}
+            <td><div class="dis">{{ MyM.prevMonthMonday + x }}</div></td>
+{% elseif dayPointer > MyM.days_in_month %}
+            <td><div class="dis">{% set trailDays = trailDays + 1 %}{{ trailDays }}</div></td>
+{% else %}
+{% set dayProp = dprops[dayPointer] %}
+            <td>
+{% if dayProp.link %}
+                <a {{ dayProp.link|raw }}>{% endif %}
+                <div class="{% if dayProp.class %}{{ dayProp.class|raw }}{% else %}dayLabel {{ MyM.color }}{% endif %}">{{ dayPointer }}</div>
+{% if dayProp.link %}
+                </a>
+{% endif %}
+{% if devents[dayPointer] %}
+                <ul class="eventList">
+{% for ev in devents[dayPointer] %}
+                    {% partial '@event' ev = ev %}
+{% endfor %}
+                </ul>
+{% endif %}
+            </td>
+{% endif %}
+{% endfor %}
+        </tr>
+{% endif %}
+{% endfor %}
+    </tbody>
+</table>

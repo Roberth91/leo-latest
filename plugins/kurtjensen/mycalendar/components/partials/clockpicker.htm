@@ -1,0 +1,23 @@
+<!-- clockpicker partial start -->
+            <div
+                id="ClockPicker-form-{{ name }}"
+                data-control="timepicker"
+                class="field-timepicker clockpicker">
+                <div class="right-align input-group">
+                    <input
+                        type="text"
+                        id="ClockPicker-form-input-{{ name }}"
+                        name="{{ name }}"
+                        value="{{ value }}"
+                        class="form-control align-right {{ class }}"
+                        autocomplete="off"
+                        data-autoclose="true"
+                        data-placement="bottom"
+                        data-align="right"
+                         />   
+                    <label for="ClockPicker-form-input-{{ name }}" class="input-group-addon">
+                        {{ label }} <i class="icon icon-clock-o"></i>
+                    </label>
+                </div>
+            </div>
+<!-- clockpicker partial end -->

@@ -1,0 +1,31 @@
+[blogPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = 1
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "blog/category"
+postPage = "blog/post"
+
+[blogCategories]
+slug = "{{ :slug }}"
+displayEmpty = 0
+categoryPage = "blog/category"
+==
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h2>Tour</h2>
+            <script type='text/javascript' src='http://widget.bandsintown.com/javascripts/bit_widget.js'></script><a href="http://www.bandsintown.com/LeoQwest" class="bit-widget-initializer" data-artist="LeoQwest" data-display-limit="5">LeoQwest Tour Dates</a>
+            {#<hr class="star-light">#}
+    {#    </div>#}
+    {#</div>#}
+    {#<div class="row">#}
+    {#    <div class="col-lg-4 col-lg-offset-2">#}
+    {#        {% component 'blogPosts' %}#}
+    {#    </div>#}
+    {#    <br />#}
+    {#    <div class="col-lg-4">#}
+    {#      {% component 'blogCategories' %}#}
+    {#    </div>#}
+    </div>
+</div>

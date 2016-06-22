@@ -1,0 +1,23 @@
+
+<!-- datepicker partial start-->
+            <div
+                id="DatePicker-form-{{ name }}"
+                class="field-datepicker"
+                data-control="datepicker"
+                data-min-date="2015-01-01 00:00:00"
+                data-max-date="{{ date()|date("Y") +5 }}-12-31 00:00:00">
+                <div class="right-align input-group date">
+                    <input
+                        type="text"
+                        id="DatePicker-form-input-{{ name }}"
+                        name="{{ name }}"
+                        value="{% if value %}{{ value }}{% else %}{{ "now"|date("Y-m-d") }}{% endif %}"
+                        class="form-control {{ class }}  align-right"
+                        autocomplete="off"
+                         />
+                    <label for="DatePicker-form-input-{{ name }}" class="input-group-addon">
+                        {{ label }} <i class="icon icon-calendar"></i>
+                    </label>
+                </div>
+            </div>
+<!-- datepicker partial end-->
